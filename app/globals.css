@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Poppins */
+@font-face {
+	font-weight: 900;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-Black.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 800;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-ExtraBold.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 700;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-Bold.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 600;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-SemiBold.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 500;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-Medium.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 400;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-Regular.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 300;
+	font-family: 'Poppins';
+	font-style: normal;
+	src: url('/font/Poppins/Poppins-Light.ttf');
+	font-display: swap;
+}
+
+
+body {
+  color: var(--foreground);
+  font-family: "Poppins", sans-serif; 
+  background: url('/img/image.png') repeat;
+}
