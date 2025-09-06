@@ -13,7 +13,6 @@
     "@yudiel/react-qr-scanner": "^2.3.1",
     "gsap": "^3.13.0",
     "js-cookie": "^3.0.5",
-    "lottie-react": "^2.4.1",
     "next": "15.4.5",
     "next-http-proxy-middleware": "^1.2.7",
     "react": "19.1.0",

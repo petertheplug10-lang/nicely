@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useContact } from "@/query/contact";
 import { useState } from "react";
+import Back from "@/components/back";
+import Link from "next/link";
 
 export default function ContactUs() {
   const { mutateAsync: contact, isPending } = useContact()
@@ -16,15 +18,25 @@ export default function ContactUs() {
     });
     (e.target as HTMLFormElement).reset();
     setIsSuccess(true);
-    
+
     setTimeout(() => {
       setIsSuccess(false)
     }, 3000)
   }
 
   return (
-    <div className="bg-black text-white px-4 pb-8 pt-15">
+    <div className="bg-black text-white px-4 pb-8 md:pt-15 pt-8">
       <div className="w-[984px] max-w-full mx-auto">
+        <div className="w-full mx-auto mb-8">
+          <Back>CONTACT US</Back>
+          <nav className="text-xs items-center hidden md:flex">
+            <Link href="/" className="text-white hover:text-gray-300">
+              Home page
+            </Link>
+            <span className="mx-2">{'>'}</span>
+            <span className="font-bold">CONTACT US</span>
+          </nav>
+        </div>
         <div className="flex md:gap-8 gap-4 justify-center items-end mb-10">
           <Image src={'/img/star-blue.png'} alt="star" width={20} height={20} />
           <Image src="/img/title/contact-us.svg" alt="logo" width={400} height={52} className="w-[400px] hidden md:block" />
@@ -120,7 +132,7 @@ export default function ContactUs() {
               <p className="text-white text-sm">
                 We'd love to hear from you. Whether you're interested in collaboration or just want to share your feedback, feel free to reach out. Contact us anytime at{' '}
                 <a href="mailto:your@email.com" className="text-orange-500 hover:text-orange-400">
-                  your@email.com
+                Service@nicozyclub.com
                 </a>
                 {' '} - let's make something great together.
               </p>
@@ -130,30 +142,30 @@ export default function ContactUs() {
             <div className="space-y-8">
               {/* Location */}
               <div className="flex items-center gap-4">
-                  <Image src="/img/contact/location.svg" alt="location" width={32} height={32} />
-                  <p className="text-white text-base font-semibold">8592 Fairground St. Tallahassee, FL 32303</p>
+                <Image src="/img/contact/location.svg" alt="location" width={32} height={32} />
+                <p className="text-white text-base font-semibold">8592 Fairground St. Tallahassee, FL 32303</p>
               </div>
 
               {/* Email */}
               <div className="flex items-center gap-4">
-                  <Image src="/img/contact/email.svg" alt="email" width={32} height={32} />
-                  <a href="mailto:rgarton@outlook.com" className="text-white text-base font-semibold hover:text-orange-500">
-                    rgarton@outlook.com
-                  </a>
+                <Image src="/img/contact/email.svg" alt="email" width={32} height={32} />
+                <a href="mailto:rgarton@outlook.com" className="text-white text-base font-semibold hover:text-orange-500">
+                  rgarton@outlook.com
+                </a>
               </div>
 
               {/* Phone */}
               <div className="flex items-center gap-4">
-                  <Image src="/img/contact/phone.svg" alt="phone" width={32} height={32} />
-                  <a href="tel:+7753786348" className="text-white text-base font-semibold hover:text-orange-500">
-                    +775 378-6348
-                  </a>
+                <Image src="/img/contact/phone.svg" alt="phone" width={32} height={32} />
+                <a href="tel:+7753786348" className="text-white text-base font-semibold hover:text-orange-500">
+                  +775 378-6348
+                </a>
               </div>
 
               {/* Hours */}
               <div className="flex items-center gap-4">
-                  <Image src="/img/contact/time.svg" alt="hours" width={32} height={32} />
-                  <p className="text-white text-base font-semibold">Mon - Fri: 10AM - 10PM</p>
+                <Image src="/img/contact/time.svg" alt="hours" width={32} height={32} />
+                <p className="text-white text-base font-semibold">Mon - Fri: 10AM - 10PM</p>
               </div>
             </div>
           </div>

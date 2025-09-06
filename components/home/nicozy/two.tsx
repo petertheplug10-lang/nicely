@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Two() { 
   return (
-    <ScrollItem start="top 70%" className="flex-1 p-4 bg-[#3f3f3f] rounded">
+    <ScrollItem start="top 70%" className="flex-1 p-4 bg-[#3f3f3f] rounded hidden md:block">
       <div className="flex items-center justify-between gap-2">
         <Image src="/img/star-blue.png" alt="logo" width={20} height={20} />
         <span className="font-black lg:text-5xl text-4xl text-[#f8e9d6]">TWO</span>

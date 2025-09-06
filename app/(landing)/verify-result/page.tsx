@@ -9,7 +9,7 @@ export default async function VerifyResult({ searchParams }: { searchParams: { r
   const result = await searchParams?.result;
   console.log(result, 'result')
   return (
-    <div className="min-h-screen bg-black text-white px-4 pb-8 pt-15">
+    <div className="min-h-screen bg-black text-white px-4 pb-8 md:pt-15 pt-8">
       {/* Main Title */}
       <div className="max-w-4xl gap-3 mx-auto flex justify-center items-end">
         <Image src="/img/star-blue.png" alt="verify-result" width={24} height={24} />

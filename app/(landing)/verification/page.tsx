@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import Back from "@/components/back";
 
 export default function ShippingPolicy() {
   return (
-    <div className="min-h-screen bg-black text-white px-4 md:px-8 pb-8 pt-15">
+    <div className="min-h-screen bg-black text-white px-4 md:px-8 pb-8 md:pt-15 pt-8">
       {/* Breadcrumb Navigation */}
+      
       <div className="w-[1034px] max-w-full mx-auto mb-8">
-        <nav className="text-xs flex items-center">
+        <Back>VERIFICATION</Back>
+        <nav className="text-xs items-center hidden md:flex">
           <Link href="/" className="text-white hover:text-gray-300">
             Home page
           </Link>

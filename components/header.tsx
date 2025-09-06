@@ -37,7 +37,7 @@ export default function Header() {
             <div className="flex gap-4">
               <div className="hidden md:flex justify-center md:w-[40px] md:h-8 w-[40px] h-6 font-[14px] cursor-pointer items-center bg-[#f8e9d6] border-[3px] border-[#7F0D0D]">CO</div>
               <div
-                className="flex md:w-[100px] uppercase font-semibold md:h-8 w-[70px] h-6 font-sm pl-2 cursor-pointer items-center bg-[#f8e9d6] border-[3px] border-[#7F0D0D] relative group"
+                className="flex md:w-[100px] rounded-[2px] justify-center uppercase font-semibold md:h-8 w-[70px] h-8 text-sm cursor-pointer items-center bg-[#f8e9d6] border-[2px] border-[#7F0D0D] relative group"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? "close" : "MENU"}
@@ -54,12 +54,12 @@ export default function Header() {
           </div>
           <div className="flex flex-1 justify-center items-center lg:gap-8 gap-2">
             <div className="lg:h-2 h-[2px] flex-1 min-w-[30px] max-w-[180px] bg-[#f8e9d6]" />
-            <img className="lg:max-h-[120px] max-h-[45px] max-w-full" src="/img/header-logo.svg" alt="nicozy" />
+            <img className="lg:max-h-[120px] max-h-[60px] max-w-full" src="/img/header-logo.svg" alt="nicozy" />
             <div className="lg:h-2 h-[2px] flex-1 min-w-[30px] max-w-[180px] bg-[#f8e9d6]" />
           </div>
           <div className="flex gap-2 flex-col items-end ml-4">
-            <img className="w-[30px] lg:w-[100px]" src="/img/icon4.png" alt="logo" />
-            <img className="w-[40px] lg:w-[100px]" src="/img/header-bear.png" alt="logo" />
+            <img className="w-[50px] lg:w-[100px]" src="/img/icon4.png" alt="logo" />
+            <img className="w-[60px] lg:w-[100px]" src="/img/header-bear.png" alt="logo" />
           </div>
         </div> 
         <div className={`bg-black/85 fixed left-0 right-0 h-[100vh] top-0 ${isMenuOpen ? "block" : "hidden"}`} onClick={() => setIsMenuOpen(false)} />

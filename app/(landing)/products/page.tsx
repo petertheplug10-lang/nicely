@@ -25,7 +25,7 @@ export default function Products() {
         {/* Left Navigation Sidebar */}
         <div className="md:w-30 border-gray-700 px-6 md:px-0">
           <h2 className="hidden md:block text-sm font-medium text-[rgba(248,233,214,0.5)] mb-3">SERIES</h2>
-          <nav className="space-y-3 flex items-start justify-between md:flex-col text-sm">
+          <nav className="space-y-3 hidden md:flex items-start justify-between md:flex-col text-sm">
             <Link 
               href="/products" 
               className="text-[#F5E7D4] font-bold border-b-2 border-[#F5E7D4] pb-1"
@@ -48,7 +48,7 @@ export default function Products() {
         </div>
 
         {/* Main Product Display Area */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 md:p-6">
             <ProductsList />
         </div>
       </div>
@@ -56,3 +56,5 @@ export default function Products() {
     </HydrationBoundary>
   );
 } 
+
+export const dynamic = 'force-dynamic'

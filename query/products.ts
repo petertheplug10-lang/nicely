@@ -24,3 +24,20 @@ export const productOptions = (id: string) => queryOptions({
     return response
   },
 })
+
+
+export const verifyOptions = (id: string) => queryOptions({
+  queryKey: ['verify'],
+  queryFn: async () => {
+    try {
+      const response = await fetcher(`/access-reward/${id}`)
+      return response
+    } catch (error) {
+      return {
+          status: 'error',
+          error: error
+      }
+    }
+    
+  },
+})

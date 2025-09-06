@@ -13,7 +13,6 @@ import { marketingOptions } from "@/query/marketing";
 export default function WhatIsNicozy() {
   const popupRef = useRef<HTMLDivElement>(null);
   const { data: { data: {imgUrl} } } = useSuspenseQuery(marketingOptions)
-
   const showPopup = () => {
     if (!popupRef.current) return;
     setTimeout(() => {
@@ -44,12 +43,12 @@ export default function WhatIsNicozy() {
       <div className="flex pt-[105px] justify-between">
         <div className="flex gap-4 flex-col justify-between">
           <img src="/img/icon2.png" alt="logo" />
-          <img className="w-[60%]" src="/img/icon5.png" alt="logo" />
+          <img className="w-[80%]" src="/img/icon5.png" alt="logo" />
         </div>
         <div className="flex">
           <img className="" src="/img/whatIsNicozy.png" alt="what is nicozy" />
         </div>
-        <div className="flex gap-2 flex-col items-end ml-4">
+        <div className="flex gap-2 flex-col items-end ml-2 md:ml-4">
           <img className="max-w-[70%]" src="/img/icon4.png" alt="logo" />
           <img className="" src="/img/icon1.png" alt="logo" />
         </div>
@@ -65,7 +64,7 @@ export default function WhatIsNicozy() {
         <div className="w-full h-full flex items-end md:items-center justify-center">
           <div className="relative">
             <Image src={"/img/close.svg"} alt="close" width={32} height={32} className="absolute -top-10 md:top-4 right-4 cursor-pointer" onClick={hidePopup} />
-            <Image src={imgUrl} alt="what is nicozy" width={800} height={1032} />
+            <img src={imgUrl} alt="what is nicozy" className="max-h-[80vh]" />
             </div>
           </div>
         </ScrollPopup>

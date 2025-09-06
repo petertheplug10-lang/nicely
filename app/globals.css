@@ -82,3 +82,9 @@ body {
   font-family: "Poppins", sans-serif; 
   background: url('/img/image.png') repeat;
 }
+
+@media (max-width: 768px) {
+  body {
+    background: black;
+  }
+}

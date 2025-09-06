@@ -16,12 +16,12 @@ export default function ProductsList() {
     nicotine: product.weight,
   }))
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             {renderProducts.map((product: any) => (
               <Link href={`/products/${product.id}`} key={product.id} className="bg-black border border-[#F5E7D4] rounded-lg p-3">
                 {/* Top Section */}
                 <div className="mb-4">
-                  <Image src={`/img/product.png`} alt={product.flavor} width={400} height={139} />
+                  <img className="w-full md:h-[140px] object-cover" src={product.image} alt={product.flavor} />
                 </div>
                 {/* Bottom Section */}
                 <div className="space-y-1">

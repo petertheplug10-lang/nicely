@@ -1,4 +1,5 @@
 'use client'
+import Back from "@/components/back";
 import { productOptions } from "@/query/products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -37,10 +38,11 @@ export default function ProductDetail() {
   const { data: { data: product } } = useSuspenseQuery(productOptions(id))
   console.log("product", product)
   return (
-    <div className="min-h-screen bg-black text-white px-4 pb-8 pt-15">
+    <div className="min-h-screen bg-black text-white px-4 pb-8 md:pt-15 pt-8">
       <div className="w-[993px] max-w-full mx-auto">
         <div className="flex flex-wrap lg:gap-13 gap-6">
           {/* Left Side - Product Visual */}
+          <Back>POUCH SERIES</Back>
           <div className="flex justify-center w-full md:w-auto">
             <div className="bg-[#222222] w-full px-4 md:w-[300px] lg:w-[380px] h-[380px] rounded-lg flex justify-center items-center">
               <Swiper modules={[Pagination]} pagination={true} slidesPerView={1}>
@@ -57,7 +59,7 @@ export default function ProductDetail() {
 
           {/* Right Side - Product Information */}
           <div className="flex-1">
-            <nav className="text-sm text-left mb-2">
+            <nav className="text-sm text-left mb-2 hidden md:block">
               <Link href="/" className="text-white hover:text-gray-300">
                 Home page
               </Link>
@@ -123,3 +125,5 @@ export default function ProductDetail() {
     </div>
   );
 } 
+
+export const dynamic = 'force-dynamic'

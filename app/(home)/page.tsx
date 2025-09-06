@@ -6,7 +6,6 @@ import { getQueryClient } from "@/app/get-query-client";
 import { featuredProductsOptions } from "@/query/products";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { marketingOptions } from "@/query/marketing";
-import LoopAnimation from "@/components/home/LoopAnimation";
 
 
 export default function Home() {
@@ -16,7 +15,7 @@ export default function Home() {
   return (
     <div className="w-full">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <LoopAnimation />
+        <div className="h-[500px]" />
         <WhatIsNicozy />
         <Classic />
         <Verification />
@@ -25,3 +24,5 @@ export default function Home() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic'
