@@ -30,7 +30,7 @@ export const verifyOptions = (id: string) => queryOptions({
   queryKey: ['verify'],
   queryFn: async () => {
     try {
-      const response = await fetcher(`/access-reward/${id}`)
+      const response = await fetcher(`/api/access-reward/${id}`)
       return response
     } catch (error) {
       return {

@@ -17,6 +17,7 @@
     "next-http-proxy-middleware": "^1.2.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-lottie": "^1.2.10",
     "swiper": "^11.2.10"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-lottie": "^1.2.10",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "html5-qrcode": "^2.3.8",
