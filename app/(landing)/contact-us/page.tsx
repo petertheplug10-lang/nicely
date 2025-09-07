@@ -131,8 +131,8 @@ export default function ContactUs() {
             <div className="md:mb-20 mb-10">
               <p className="text-white text-sm">
                 We'd love to hear from you. Whether you're interested in collaboration or just want to share your feedback, feel free to reach out. Contact us anytime at{' '}
-                <a href="mailto:your@email.com" className="text-orange-500 hover:text-orange-400">
-                Service@nicozyclub.com
+                <a href="mailto:service@nicozyclub.com" className="text-orange-500 hover:text-orange-400">
+                service@nicozyclub.com
                 </a>
                 {' '} - let's make something great together.
               </p>
@@ -140,25 +140,11 @@ export default function ContactUs() {
 
             {/* Contact Details */}
             <div className="space-y-8">
-              {/* Location */}
-              <div className="flex items-center gap-4">
-                <Image src="/img/contact/location.svg" alt="location" width={32} height={32} />
-                <p className="text-white text-base font-semibold">8592 Fairground St. Tallahassee, FL 32303</p>
-              </div>
-
               {/* Email */}
               <div className="flex items-center gap-4">
                 <Image src="/img/contact/email.svg" alt="email" width={32} height={32} />
-                <a href="mailto:rgarton@outlook.com" className="text-white text-base font-semibold hover:text-orange-500">
-                  rgarton@outlook.com
-                </a>
-              </div>
-
-              {/* Phone */}
-              <div className="flex items-center gap-4">
-                <Image src="/img/contact/phone.svg" alt="phone" width={32} height={32} />
-                <a href="tel:+7753786348" className="text-white text-base font-semibold hover:text-orange-500">
-                  +775 378-6348
+                <a href="mailto:service@nicozyclub.com" className="text-white text-base font-semibold hover:text-orange-500">
+                service@nicozyclub.com
                 </a>
               </div>
 

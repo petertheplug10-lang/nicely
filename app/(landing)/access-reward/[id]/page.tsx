@@ -11,7 +11,7 @@ export default function ProductDetail() {
   const id = params?.id as string;
   const { data } = useSuspenseQuery(verifyOptions(id+'/'))
   console.log("data", data)
-  const result = data?.status !== 'error'
+  const result = data?.status === 'success' && !data?.isUsed
   return (
     <div className="min-h-screen bg-black text-white px-4 pb-8 md:pt-15 pt-8">
       {/* Main Title */}
