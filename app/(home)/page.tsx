@@ -7,6 +7,7 @@ import { getQueryClient } from "@/app/get-query-client";
 import { featuredProductsOptions } from "@/query/products";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { marketingOptions } from "@/query/marketing";
+import Back2Top from "@/components/back2Top";
 
 export default function Home() {
   const queryClient = getQueryClient();
@@ -21,6 +22,7 @@ export default function Home() {
         <Verification />
         <Contact />
       </HydrationBoundary>
+      <Back2Top />
     </div>
   );
 }

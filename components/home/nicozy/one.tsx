@@ -9,8 +9,8 @@ export default function One() {
         <span className="md:font-black font-semibold lg:text-5xl text-4xl text-[#F8C994] md:text-[#f8e9d6]">ONE</span>
         <Image src="/img/star-yellow.png" alt="logo" width={20} height={20} />
       </div>
-      <p className="lg:text-base text-lg h-20 mt-4 md:px-0 px-10 text-white md:text-[#f8e9d6] text-center capitalize md:uppercase">
-        nicozy is a bold new nicotine pouch brand that brings a modern twist to your nicotine routine.
+      <p className="lg:text-base text-lg h-30 mt-4 md:px-0 px-10 text-white md:text-[#f8e9d6] text-center capitalize md:uppercase">
+      Nicozy represents an innovative nicotine pouch brand, offering a contemporary approach to nicotine consumption.
       </p>
       <div className="flex-1 flex items-center justify-center relative mt-20 md:h-[150px] h-[200px] bg-black rounded">
         <img className="absolute md:size-5 size-7 top-2 left-2" src="/img/heart.png" alt="heart" />

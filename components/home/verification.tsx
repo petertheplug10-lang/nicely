@@ -52,8 +52,8 @@ export default function Verification() {
       
       <div className="flex items-start gap-4 md:gap-8 mt-10">
         <div className="flex flex-1 mt-2 flex-col gap-8">
-          <p className="uppercase font-thin md:font-bold lg:text-3xl text-sm">EACH NICOZY PRODUCT COMES WITH A UNIOUE OR CODE ON THE PACKAGING FOR AUTHENTICITY VERIFICATION.</p>
-          <p className="uppercase font-thin md:font-bold lg:text-3xl text-sm">EACH CODE CAN ONLY BE SCANNED ONCE ENSURING THAT THE PRODUCT YOU PURCHASED IS GENUINE AND UNTAMPERED.</p>
+          <p className="uppercase font-thin md:font-bold lg:text-3xl text-sm">All Nicozy products are equipped with a unique QR code on their packaging to ensure authenticity verification.</p>
+          <p className="uppercase font-thin md:font-bold lg:text-3xl text-sm">Each code is designed for a single scan, thereby guaranteeing the authenticity and integrity of the purchased product.</p>
           <img className="lg:w-[200px] w-[60px]" src="/img/icon-6.png" alt="qr-code" />
         </div>
         <img className="md:w-[40%] w-[30%]" src="/img/scan.png" alt="qr-code" />

@@ -45,8 +45,8 @@ export default function ShippingPolicy() {
             <div className="bg-[#111111] rounded-xl py-6">
               <div className="text-base font-semibold text-center mb-3 text-[#EAAA63]">Scan the QR Code on the Bottom of Your NICOZY Package</div>
               <p className="text-xs leading-relaxed text-center max-w-[624px] mx-auto text-white">
-                To verify your product’s authenticity, please scan the QR code located on the bottom of the packaging using your mobile device.
-                <br />Each code is uniquely assigned and can only be verified once.
+              To validate the authenticity of your NICOZY product, please utilize your mobile device to scan the QR code situated on the base of the packaging.
+                <br />This unique code is designed for single-use verification.
               </p>
             </div>
           </div>
@@ -101,13 +101,13 @@ export default function ShippingPolicy() {
                 </div>
                 <div className="flex items-start gap-2 text-xs">
                   <Image src="/img/error.svg" alt="verification" width={12} height={12} />
-                  <span className="font-semibold text-white">The code has been previously scanned, or is invalid.
+                  <span className="font-semibold text-white">The provided code has either been previously scanned or is invalid.
                   </span>
                 </div>
                 <div className="flex items-start gap-2 text-xs">
                   <Image src="/img/error.svg" alt="verification" width={12} height={12} />
                   <span className="font-semibold text-white">
-                    The product may not be genuine.
+                  The product's authenticity cannot be guaranteed.
                   </span>
                 </div>
               </div>

@@ -9,7 +9,7 @@ export default function Two() {
         <span className="font-black lg:text-5xl text-4xl text-[#f8e9d6]">TWO</span>
         <Image src="/img/star-blue.png" alt="logo" width={20} height={20} />
       </div>
-      <p className="text-xs lg:text-base h-20 mt-4 text-[#f8e9d6] text-center uppercase">
+      <p className="text-xs lg:text-base h-30 mt-4 text-[#f8e9d6] text-center uppercase">
         discreet, smoke-free, and designed for on-the-go use, our pouches deliver a clean and satisfying experience.
       </p>
       <div className="flex-1 flex items-end justify-start relative mt-20 h-[150px] bg-black rounded">

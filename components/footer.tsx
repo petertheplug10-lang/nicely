@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="md:flex-[1.5] w-full md:w-auto flex-shrink-0">
           <img className="w-[200px] md:mb-2 mb-4 mx-auto md:mx-0" src="/img/footer-logo.png" alt="logo" />
           <img className="w-[100px] md:w-[60px] md:mb-1 mb-4 mx-auto md:mx-0" src="/img/footer-new.png" alt="logo" />
-          <p className="md:text-[10px] font-thin md:font-normal md:leading-3">NICOZY IS PREMIUM SMOKELESS TOBACCO, OFFERING A DISCREET AND SMOKE-FREE WAY TO ENJOY NICOTINE.SIMPLY PLACE A POUCH COMFORTABLY BETWEEN YOUR GUM AND LIP FOR A SATISFYING EXPERIENCE-ANYTIME ANYWHERE. EXPLORE A RANGE OF REFRESHING FLAVORS AND NICOTINE STRENGTHS DESIGNED FOR ADULT TOBACCO USERS SEEKING A CLEANER ALTERNATIVE. NICOZY DELIVERS SATISFACTION WITHOUT THE SMOKE.</p>
+          <p className="md:text-[10px] font-thin uppercase md:font-normal md:leading-3">NICOZY presents a premium smokeless tobacco product, providing a discreet and smoke-free method for nicotine consumption. The product is designed for convenient use, with pouches placed between the gum and lip for a pleasurable experience, anytime and anywhere. Adult tobacco users can explore a variety of refreshing flavors and nicotine strengths, offering a cleaner alternative. NICOZY provides satisfaction without the presence of smoke.</p>
           <p className="text-xs mt-2 text-center md:text-left">© 2025 NICOZY</p>
         </div>
         <div className="flex-1">
@@ -17,16 +17,13 @@ export default function Footer() {
               <Link className="text-xs lg:text-sm uppercase" href="/">Home</Link>
             </li>
             <li>
-              <Link className="text-xs lg:text-sm uppercase" href="/">what is nicozy</Link>
+              <Link className="text-xs lg:text-sm uppercase" href="/products">pouch series</Link>
             </li>
             <li>
-              <Link className="text-xs lg:text-sm uppercase" href="/">pouch series</Link>
+              <Link className="text-xs lg:text-sm uppercase" href="/verification">Product Verification</Link>
             </li>
             <li>
-              <Link className="text-xs lg:text-sm uppercase" href="/">Product Verification</Link>
-            </li>
-            <li>
-              <Link className="text-xs lg:text-sm uppercase" href="/">Contact Us</Link> 
+              <Link className="text-xs lg:text-sm uppercase" href="/contact-us">Contact Us</Link> 
             </li>
           </ul>
         </div>
