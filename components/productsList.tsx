@@ -28,7 +28,7 @@ export default function ProductsList() {
                   <p className="text-lg text-[#F8C994] font-semibold">{product.baseFlavor}</p>
                   <div className="flex items-center text-[#F5E7D4] justify-between gap-2">
                     <p className="w-16 text-sm ">{product.productType}</p>
-                    <p className="text-sm"><span className="text-3xl">{product.nicotine}</span> mg</p>
+                   <p className="text-sm"><span className="md:text-3xl">{product.nicotine}</span> mg</p>
                   </div>
                 </div>
               </Link>
