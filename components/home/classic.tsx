@@ -28,12 +28,12 @@ export default function Classic() {
         {data.map((item: any) => (
           <li key={item.id} className="rounded-lg border border-[#f8e9d6] w-full p-4 max-w-[47%] md:max-w-[20%] lg:max-w-[30%]">
             <img className="w-full md:h-[140px] object-cover" src={item.image} alt={item.flavor} />
-            <div className="flex justify-between gap-2 mt-4">
+            <div className="flex justify-between items-center gap-2 mt-4">
               <div>
                 <h3 className="uppercase text-sm lg:text-2xl font-semibold text-[#F8C994]">{item.flavor}</h3>
                 <p className="text-xs lg:text-base uppercase">{item.label}</p>
               </div>
-              <p className="text-xs lg:text-base font-semibold md:font-black"><span className="text-3xl lg:text-5xl mr-1">{item.nicotine}</span>mg</p>
+              <p className="text-xs lg:text-base"><span className="lg:text-3xl mr-1">{item.nicotine}</span>mg</p>
             </div>
           </li>
         ))}
