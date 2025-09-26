@@ -4,7 +4,7 @@ import { fetcher } from '@/utils/fetcher'
 export const featuredProductsOptions = queryOptions({
   queryKey: ['featuredProducts'],
   queryFn: async () => {
-    const response = await fetcher('/api/products?featured=true')
+    const response = await fetcher('/api/products?featured=true&page_size=6')
     return response
   },
 })
@@ -12,7 +12,7 @@ export const featuredProductsOptions = queryOptions({
 export const productsOptions = queryOptions({
   queryKey: ['products'],
   queryFn: async () => {
-    const response = await fetcher('/api/products')
+    const response = await fetcher('/api/products?page_size=999')
     return response
   },
 })
