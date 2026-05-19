@@ -1,90 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0c0c0e;
+  --foreground: #fafafa;
+  --nicozy-accent: #e8c547;
+  --nicozy-accent-soft: rgba(232, 197, 71, 0.12);
+  --nicozy-surface: #16161a;
+  --nicozy-muted: #a1a1aa;
+  --nicozy-border: rgba(255, 255, 255, 0.08);
+}
+
+@font-face {
+	font-weight: 400;
+	font-family: 'LogoSC Unbounded Sans';
+	font-style: normal;
+	src: url('./fonts/unbounded/UnboundedSans-Regular.ttf');
+	font-display: swap;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --color-nicozy-accent: var(--nicozy-accent);
+  --color-nicozy-surface: var(--nicozy-surface);
+  --color-nicozy-muted: var(--nicozy-muted);
+  --color-nicozy-border: var(--nicozy-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 通过 @theme 扩展 Tailwind 主题 */
+@theme {
+  /* 新增自定义字体族 */
+  --font-unbounded: "LogoSC Unbounded Sans", sans-serif;
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Track sets --marquee-segments (number of identical flex children). Loop = translate one segment. */
+@keyframes nicozy-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-100% / var(--marquee-segments, 4)), 0, 0);
   }
 }
 
-/* Poppins */
-@font-face {
-	font-weight: 900;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-Black.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 800;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-ExtraBold.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 700;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-Bold.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 600;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-SemiBold.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 500;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-Medium.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 400;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-Regular.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-weight: 300;
-	font-family: 'Poppins';
-	font-style: normal;
-	src: url('/font/Poppins/Poppins-Light.ttf');
-	font-display: swap;
-}
-
-
-body {
-  color: var(--foreground);
-  font-family: "Poppins", sans-serif; 
-  background: url('/img/image.png') repeat;
-}
-
-@media (max-width: 768px) {
-  body {
-    background: black;
+@keyframes community-ticker-bg {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -377px;
   }
 }

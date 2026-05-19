@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
+import { AgeVerificationModal } from "@/components/marketing/age-verification-modal";
+import { getAgeRegionForRequest } from "@/lib/age-region-server";
 import "./globals.css";
-import Footer from "@/components/footer";
 import Providers from "./providers";
-import AgeVerificationModal from "@/components/AgeVerificationModal";
+import { Toaster } from "sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/** Matches Google Fonts: Inter variable (opsz/wght) + italic. */
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 const geistMono = Geist_Mono({
@@ -16,24 +20,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nicozy",
-  description: "nicozy is a bold new nicotine pouch brand that brings a modern twist to your nicotine routine.",
+  title: {
+    default: "Nicozy",
+    template: "%s | Nicozy",
+  },
+  description:
+    "Nicozy is a bold new nicotine pouch brand that brings a modern twist to your nicotine routine.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const ageRegion = await getAgeRegionForRequest();
+
   return (
-    <html lang="en">
-      <body
-      >
-        <Providers>
-          {children}
-        </Providers>
-        <Footer />
-        <AgeVerificationModal />
+    <html
+      lang="en"
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full">
+        <Providers>{children}</Providers>
+        <AgeVerificationModal defaultRegion={ageRegion} />
+        <Toaster />
       </body>
     </html>
   );
