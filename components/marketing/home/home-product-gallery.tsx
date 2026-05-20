@@ -22,6 +22,7 @@ const cards = [
       "WITH ITS SMOOTH SIDE-SLIDE OPENING, THE NICOZY SQUARE TIN ALLOWS EASY ONE-HAND OPERATION-PERFECT FOR QUICK ACCESS WHEREVER YOU ARE.",
     image: "/images/product-gallery/classic.jpg",
     imageClass: "object-cover object-[50%_45%]",
+    href: "/gallery#chapter-one",
   },
   {
     label: "CHAPTER 2",
@@ -31,6 +32,7 @@ const cards = [
       "The Nicozy round tin is designed to preserve pouch moisture while meeting modern packaging standards—ensuring freshness, quality, and reliability in every tin.",
     image: "/images/product-gallery/premium.jpg",
     imageClass: "object-cover object-[50%_55%]",
+    href: "/gallery#chapter-two-premium",
   },
   {
     label: "",
@@ -40,16 +42,19 @@ const cards = [
       "Nicozy is more than a pouch brand — it’s a lifestyle. Explore exclusive apparel, accessories, and more inspired by the Nicozy culture.",
     image: "/images/product-gallery/lifestyle.jpg",
     imageClass: "object-cover object-[50%_20%]",
+    href: "/gallery#lifestyle",
   },
 ] as const;
 
 type ProductGalleryCard = (typeof cards)[number];
 
-function ProductCard({ label, title, subtitle, description, image, imageClass }: ProductGalleryCard) {
+function ProductCard({ label, title, subtitle, description, image, imageClass, href }: ProductGalleryCard) {
   return (
-    <article
+    <Link
+      href={href}
+      aria-label={`Browse ${title}`}
       data-gallery-card
-      className="relative flex-1 mx-auto flex w-full shrink-0 flex-col overflow-hidden rounded-[40px] border border-[rgba(229,229,229,0.6)] bg-white shadow-[0_8px_15px_rgba(0,0,0,0.04)] lg:mx-0 lg:min-h-[572px]"
+      className="group relative mx-auto flex w-full flex-1 shrink-0 flex-col overflow-hidden rounded-[40px] border border-[rgba(229,229,229,0.6)] bg-white shadow-[0_8px_15px_rgba(0,0,0,0.04)] transition hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 lg:mx-0 lg:min-h-[572px]"
     >
       <div className="relative mx-2 mt-2 min-h-14 shrink-0 overflow-hidden sm:min-h-16">
         <div className="absolute left-4 top-4 z-10 inline-flex h-10 items-center px-4 text-[10px] font-bold uppercase tracking-widest text-black">
@@ -80,7 +85,7 @@ function ProductCard({ label, title, subtitle, description, image, imageClass }:
           />
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

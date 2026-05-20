@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import type { ComponentProps, ReactNode } from "react";
+import { useState } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { BannerSlide, BannersPayload } from "@/lib/api/types";
@@ -32,9 +32,11 @@ export function hasBannerSwiperData(
 }
 
 type BannerSwiperFrameProps = Omit<ComponentProps<"section">, "children"> & {
-  /** 无有效轮播图时原样渲染 `children`（通常为整块静态 Hero）。有数据时由本组件包一层 `section` 并渲染 Swiper 背景，`children` 为前景。 */
   data: BannersPayload | null | undefined;
-  children: ReactNode;
+  /** 轮播第一帧（静态背景）；无接口数据时与 `foreground` 一起整块展示 */
+  leadingSlide?: ReactNode;
+  /** 叠在第一帧上的前景，仅在当前为第 1 帧时显示 */
+  foreground?: ReactNode;
 };
 
 function HeroSlideImage({
@@ -61,7 +63,7 @@ function HeroSlideImage({
   return (
     <a
       href={slide.linkUrl}
-      className="block outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-white"
+      className="block h-full w-full outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-white"
     >
       {img}
     </a>
@@ -70,30 +72,42 @@ function HeroSlideImage({
 
 function BannerSwiperLayer({
   slides,
+  leadingSlide,
   objectPositionClass,
   rotationMs,
   className,
+  onActiveIndexChange,
 }: {
   slides: BannerSlide[];
+  leadingSlide?: ReactNode;
   objectPositionClass: string;
   rotationMs: number;
   className?: string;
+  onActiveIndexChange: (index: number) => void;
 }) {
-  if (slides.length === 0) return null;
+  const slideCount = (leadingSlide ? 1 : 0) + slides.length;
+  if (slideCount === 0) return null;
 
   return (
-    <div className={`${className ?? ""}`}>
+    <div className={className ?? ""}>
       <Swiper
         className="h-full w-full"
         modules={[Autoplay]}
-        loop={slides.length > 1}
+        loop={slideCount > 1}
         autoplay={{
           delay: rotationMs,
           disableOnInteraction: false,
         }}
+        autoplay={false}
         slidesPerView={1}
         watchOverflow
+        onSlideChange={(swiper) => onActiveIndexChange(swiper.realIndex)}
       >
+        {leadingSlide ? (
+          <SwiperSlide key="leading" className="!h-full">
+            <div className="relative h-full min-h-[inherit] w-full">{leadingSlide}</div>
+          </SwiperSlide>
+        ) : null}
         {slides.map((slide) => (
           <SwiperSlide key={`${slide.sort}-${slide.imageUrl}`} className="!h-full">
             <div className="relative h-full w-full">
@@ -111,12 +125,22 @@ function BannerSwiperLayer({
 
 export function BannerSwiperFrame({
   data,
-  children,
+  leadingSlide,
+  foreground,
   className,
   ...sectionProps
 }: BannerSwiperFrameProps) {
-  if (!hasBannerSwiperData(data)) {
-    return <>{children}</>;
+  const [showForeground, setShowForeground] = useState(true);
+  const hasApiSlides = hasBannerSwiperData(data);
+
+  if (!hasApiSlides) {
+    if (!leadingSlide) return null;
+    return (
+      <section className={className} {...sectionProps}>
+        {leadingSlide}
+        {foreground}
+      </section>
+    );
   }
 
   const rotationMs = Math.max(1, (data.rotationSeconds ?? 5) * 1000);
@@ -125,18 +149,29 @@ export function BannerSwiperFrame({
 
   return (
     <section className={className} {...sectionProps}>
+      <div className="absolute inset-0 min-h-[inherit]">
         <BannerSwiperLayer
           slides={mobileSlides}
-          objectPositionClass="object-[center_22%]"
+          leadingSlide={leadingSlide}
+          objectPositionClass="object-cover object-center"
           rotationMs={rotationMs}
-          className="md:hidden"
+          className="h-full md:hidden"
+          onActiveIndexChange={(index) => setShowForeground(index === 0)}
         />
         <BannerSwiperLayer
           slides={pcSlides}
+          leadingSlide={leadingSlide}
           objectPositionClass="object-center"
           rotationMs={rotationMs}
-          className="hidden md:block"
+          className="hidden h-full md:block"
+          onActiveIndexChange={(index) => setShowForeground(index === 0)}
         />
+      </div>
+      {showForeground && foreground ? (
+        <div className="pointer-events-none relative z-10 [&_a]:pointer-events-auto">
+          {foreground}
+        </div>
+      ) : null}
     </section>
   );
 }

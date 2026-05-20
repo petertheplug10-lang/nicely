@@ -11,11 +11,11 @@ const SEGMENTS = 4;
 function MarqueeChunk({ id }: { id: number }) {
   return (
     <div
-      className="flex shrink-0 items-center gap-4 pr-4 text-[9px] font-bold uppercase tracking-[0.12em] text-white sm:gap-8 sm:pr-8 sm:text-[11px]"
+      className="flex shrink-0 items-center gap-8 pr-8 text-xs font-bold uppercase tracking-wide text-white"
       aria-hidden={id > 0}
     >
       {items.map((label) => (
-        <span key={label} className="flex items-center gap-4 whitespace-nowrap sm:gap-8">
+        <span key={label} className="flex items-center gap-8 whitespace-nowrap">
           <span>{label}</span>
           <span className="text-white/55" aria-hidden>
             #
@@ -26,10 +26,19 @@ function MarqueeChunk({ id }: { id: number }) {
   );
 }
 
-export function HomeMarquee() {
+type HomeMarqueeProps = {
+  /** 嵌在 mobile hero 底部（Figma 56:1242） */
+  embedded?: boolean;
+};
+
+export function HomeMarquee({ embedded = false }: HomeMarqueeProps) {
   return (
     <div
-      className="border-y border-white/15 py-3.5 sm:py-5"
+      className={
+        embedded
+          ? "flex h-[49px] items-center overflow-hidden border-y border-white/20"
+          : "border-y border-white/15 py-3.5 sm:py-5"
+      }
       style={{
         background: "linear-gradient(90deg, #DF696E 0%, #87BCCB 100%)",
       }}

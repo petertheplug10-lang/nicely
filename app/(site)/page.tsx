@@ -19,7 +19,9 @@ export default async function Home() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <HomeHero />
-        <HomeMarquee />
+        <div>
+          <HomeMarquee />
+        </div>
         <HomeScrollReveal>
           <HomeProductGallery />
           <div data-home-reveal>
