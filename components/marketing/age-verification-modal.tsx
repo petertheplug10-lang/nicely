@@ -17,6 +17,7 @@ const display = Unbounded({
 
 const STORAGE_KEY = "nicozy-age-verification";
 const REMEMBER_MS = 30 * 24 * 60 * 60 * 1000;
+const REGION_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 function readDocumentCookie(name: string): string | undefined {
   if (typeof document === "undefined") return undefined;
@@ -28,6 +29,22 @@ function readDocumentCookie(name: string): string | undefined {
     return decodeURIComponent(raw);
   } catch {
     return raw;
+  }
+}
+
+function writeRegionCookie(value: AgeRegion) {
+  if (typeof document === "undefined") return;
+  document.cookie = `${AGE_REGION_COOKIE}=${value}; path=/; max-age=${REGION_COOKIE_MAX_AGE}; samesite=lax`;
+}
+
+async function fetchRegion(signal: AbortSignal): Promise<AgeRegion | null> {
+  try {
+    const res = await fetch("/age-region", { cache: "no-store", signal });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { region?: string };
+    return parseAgeRegionCookie(data.region);
+  } catch {
+    return null;
   }
 }
 
@@ -95,11 +112,27 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
   const [region, setRegion] = useState<AgeRegion>(defaultRegion);
 
   useEffect(() => {
-    queueMicrotask(() => {
+    const controller = new AbortController();
+
+    (async () => {
       const fromCookie = parseAgeRegionCookie(readDocumentCookie(AGE_REGION_COOKIE));
-      if (fromCookie) setRegion(fromCookie);
+      if (fromCookie) {
+        setRegion(fromCookie);
+      } else {
+        const resolved = await fetchRegion(controller.signal);
+        if (controller.signal.aborted) return;
+        const next: AgeRegion = resolved ?? "US";
+        writeRegionCookie(next);
+        setRegion(next);
+      }
+
+      if (controller.signal.aborted) return;
       if (!hasValidVerification()) setOpen(true);
-    });
+    })();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {
