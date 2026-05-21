@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Unbounded } from "next/font/google";
+import Cookies from "js-cookie";
 import { useEffect, useId, useState } from "react";
 import {
   AGE_REGION_COOKIE,
@@ -17,24 +18,14 @@ const display = Unbounded({
 
 const STORAGE_KEY = "nicozy-age-verification";
 const REMEMBER_MS = 30 * 24 * 60 * 60 * 1000;
-const REGION_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
-
-function readDocumentCookie(name: string): string | undefined {
-  if (typeof document === "undefined") return undefined;
-  const parts = `; ${document.cookie}`.split(`; ${name}=`);
-  if (parts.length < 2) return undefined;
-  const raw = parts.pop()?.split(";").shift();
-  if (raw == null) return undefined;
-  try {
-    return decodeURIComponent(raw);
-  } catch {
-    return raw;
-  }
-}
+const REGION_COOKIE_EXPIRES_DAYS = 365;
 
 function writeRegionCookie(value: AgeRegion) {
-  if (typeof document === "undefined") return;
-  document.cookie = `${AGE_REGION_COOKIE}=${value}; path=/; max-age=${REGION_COOKIE_MAX_AGE}; samesite=lax`;
+  Cookies.set(AGE_REGION_COOKIE, value, {
+    path: "/",
+    expires: REGION_COOKIE_EXPIRES_DAYS,
+    sameSite: "lax",
+  });
 }
 
 async function fetchRegion(signal: AbortSignal): Promise<AgeRegion | null> {
@@ -115,7 +106,7 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
     const controller = new AbortController();
 
     (async () => {
-      const fromCookie = parseAgeRegionCookie(readDocumentCookie(AGE_REGION_COOKIE));
+      const fromCookie = parseAgeRegionCookie(Cookies.get(AGE_REGION_COOKIE));
       if (fromCookie) {
         setRegion(fromCookie);
       } else {
