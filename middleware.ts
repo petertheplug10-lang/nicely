@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    const url = new URL("/api/age-region", request.nextUrl.origin);
+    const url = new URL("/age-region", request.nextUrl.origin);
     const fwd = await fetch(url, {
       method: "GET",
       headers: {
@@ -75,6 +75,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!api/|age-region$|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };
