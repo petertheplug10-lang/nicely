@@ -6,8 +6,6 @@ import { IconInstagram, IconTikTok, IconYoutube } from "@/components/marketing/s
 const colNav = [
   { href: "/", label: "Home" },
   { href: "/gallery", label: "Gallery" },
-  { href: "#", label: "Store Locator" },
-  { href: "#", label: "Best Sellers" },
   { href: "/about", label: "About NICOZY" },
 ];
 

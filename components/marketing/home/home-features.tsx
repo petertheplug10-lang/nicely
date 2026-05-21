@@ -143,7 +143,7 @@ function FeatureMobileBackground({ kind }: { kind: FeatureRow["visual"] }) {
   if (kind === "premium") {
     return (
       <Image
-        src="/images/features/premium-right.jpg"
+        src="/images/features/premium-mobile.png"
         alt=""
         fill
         className="object-cover object-center"
@@ -240,21 +240,12 @@ function PremiumVisual() {
   return (
     <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[28px] border border-[rgba(229,229,229,0.6)] shadow-[0_8px_30px_rgba(0,0,0,0.04)] bg-[#050402] sm:min-h-[280px] sm:rounded-[40px] lg:min-h-[426px]">
       <Image
-        src="/images/features/premium-right.jpg"
+        src="/images/features/premium-pc.png"
         alt="Nicozy pouches on dark surface"
         fill
         className="object-cover object-[65%_center]"
         sizes="(max-width: 1024px) 100vw, 900px"
       />
-      <div className="absolute inset-y-0 left-0 w-[55%] min-w-[200px]">
-        <Image
-          src="/images/features/premium-left.jpg"
-          alt=""
-          fill
-          className="object-cover object-[20%_center]"
-          sizes="(max-width: 1024px) 55vw, 500px"
-        />
-      </div>
     </div>
   );
 }
