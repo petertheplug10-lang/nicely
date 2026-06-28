@@ -1,3 +1,5 @@
+import { GALLERY_SEO_H1 } from "@/lib/seo/gallery";
+
 type GalleryHeroProps = {
   onOpenMobileFilters?: () => void;
 };
@@ -10,7 +12,7 @@ export function GalleryHero({ onOpenMobileFilters }: GalleryHeroProps) {
           Explore The Collection
         </span>
         <h1 className="font-unbounded text-[clamp(2.25rem,9vw,4.5rem)] font-normal leading-none tracking-[-1.8px] text-white">
-          The Gallery
+          {GALLERY_SEO_H1}
         </h1>
         <p className="px-1 text-base leading-relaxed text-[#ececec] sm:text-lg sm:text-[#d4d4d4]">
           Discover our complete range of premium pouches &amp; lifestyle apparel.

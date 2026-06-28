@@ -7,10 +7,21 @@ import {
 } from "@/lib/api/query-options";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
+import {
+  GALLERY_SEO_DESCRIPTION,
+  GALLERY_SEO_TITLE,
+} from "@/lib/seo/gallery";
+
 export const metadata: Metadata = {
-  title: "The Gallery",
-  description:
-    "Explore Nicozy chapters: Classic and Premium nicotine pouch series, strength options, and Nicozy Lifestyle apparel and accessories.",
+  title: {
+    absolute: GALLERY_SEO_TITLE,
+  },
+  description: GALLERY_SEO_DESCRIPTION,
+  openGraph: {
+    title: GALLERY_SEO_TITLE,
+    description: GALLERY_SEO_DESCRIPTION,
+    type: "website",
+  },
 };
 
 export default async function GalleryPage() {

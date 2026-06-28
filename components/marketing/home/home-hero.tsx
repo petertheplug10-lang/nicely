@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 // import { Unbounded } from "next/font/google";
 import { useBanners } from "@/lib/api/hooks/use-banners";
+import { HOME_SEO_H1 } from "@/lib/seo/home";
 import { BannerSwiperFrame } from "../banner-swiper-frame";
 import { HomeMarquee } from "./home-marquee";
 
@@ -94,13 +95,9 @@ export function HomeHeroStaticForeground() {
 
         <h1
           id="home-hero-heading"
-          className="font-unbounded mt-6 w-full max-w-[398px] text-[40px] font-semibold uppercase leading-[1.16] tracking-[-0.065em] text-white md:mt-0 md:max-w-none md:text-6xl md:leading-[1.02] md:tracking-[-0.04em] lg:text-9xl"
+          className="font-unbounded mt-6 w-full max-w-[398px] text-[32px] font-semibold uppercase leading-[1.16] tracking-[-0.065em] text-white sm:text-[36px] md:mt-0 md:max-w-none md:text-5xl md:leading-[1.08] md:tracking-[-0.04em] lg:text-6xl"
         >
-          <span className="block md:hidden">The Premium</span>
-          <span className="block md:hidden">Nicotine Experience</span>
-          <span className="hidden md:block">The Premium</span>
-          <span className="hidden md:block">Nicotine</span>
-          <span className="hidden md:block">Experience</span>
+          {HOME_SEO_H1}
         </h1>
 
         <p className="mt-8 flex items-center justify-center gap-2 text-xl font-bold italic tracking-wide text-white md:mt-10 md:gap-3 md:text-2xl lg:text-3xl">

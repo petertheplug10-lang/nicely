@@ -140,7 +140,7 @@ function FeatureMobileBackground({ kind }: { kind: FeatureRow["visual"] }) {
         src="/images/features/premium-mobile.png"
         alt=""
         fill
-        className="object-cover object-center"
+        className="object-cover object-center !h-[111%] !top-[-13px]"
         sizes="100vw"
       />
     );
