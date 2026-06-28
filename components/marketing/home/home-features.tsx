@@ -1,16 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-features-display",
-});
 
 type TextPanelVariant = "white" | "warm";
 
@@ -332,7 +326,7 @@ export function HomeFeatures() {
     <section
       ref={sectionRef}
       id="difference"
-      className={`relative scroll-mt-28 overflow-hidden bg-[#fafafa] ${display.variable}`}
+      className={`relative scroll-mt-28 overflow-hidden bg-[#fafafa]`}
       aria-labelledby="features-heading"
     >
       <div

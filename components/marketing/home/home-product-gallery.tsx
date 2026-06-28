@@ -2,16 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-gallery-display",
-});
 
 const cards = [
   {
@@ -163,7 +157,7 @@ export function HomeProductGallery() {
     <section
       ref={sectionRef}
       id="gallery"
-      className={`scroll-mt-28 bg-[#fafafa] ${display.variable}`}
+      className={`scroll-mt-28 bg-[#fafafa]`}
       aria-labelledby="gallery-heading"
     >
       <div className="mx-auto flex max-w-[1600px] flex-col gap-10 px-4 pb-16 pt-16 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-20 lg:gap-12 lg:px-12 lg:pt-24">

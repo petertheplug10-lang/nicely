@@ -2,18 +2,12 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import { useTikTokVideos } from "@/lib/api/hooks/use-tiktok-videos";
 import { useTikTokOEmbedPreview } from "@/lib/api/hooks/use-tiktok-oembed-preview";
 import type { TikTokVideo } from "@/lib/api/types";
 import { parseTikTokVideoIdFromUrl } from "@/lib/tiktok/parse-tiktok-video-id";
 import { TikTokEmbedModal } from "@/components/marketing/home/tiktok-embed-modal";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-community-display",
-});
 
 const cardFrameClass =
   "relative shrink-0 snap-start overflow-hidden h-[min(52vh,420px)] sm:h-[min(62vh,520px)] md:h-[min(70vh,597px)]";
@@ -115,7 +109,7 @@ export function HomeCommunity() {
 
   return (
     <section
-      className={`relative overflow-hidden border-y-[3px] border-[#1c1b18] bg-[#1c1b18] pb-[160px] pt-16 sm:pt-20 md:pt-24 ${display.variable}`}
+      className={`relative overflow-hidden border-y-[3px] border-[#1c1b18] bg-[#1c1b18] pb-[160px] pt-16 sm:pt-20 md:pt-24`}
       aria-labelledby="community-heading"
     >
       <div className="pointer-events-none absolute left-1/2 top-6 w-full max-w-[1488px] -translate-x-1/2 px-4 opacity-[0.35] sm:top-10">

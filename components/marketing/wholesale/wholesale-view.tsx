@@ -1,16 +1,10 @@
 import Image from "next/image";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import { WholesaleInquiryForm } from "@/components/marketing/wholesale/wholesale-inquiry-form";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-wholesale-display",
-});
 
 export function WholesaleView() {
   return (
-    <div className={`relative overflow-x-hidden bg-[#fafafa] ${display.variable}`}>
+    <div className={`relative overflow-x-hidden bg-[#fafafa]`}>
       <div
         className="pointer-events-none absolute left-[-30%] top-28 size-[500px] rounded-full bg-[rgba(223,105,110,0.1)] blur-[100px] sm:left-[-20%] md:left-auto md:right-[8%] md:top-56"
         aria-hidden

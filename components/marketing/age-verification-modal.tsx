@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import Cookies from "js-cookie";
 import { useEffect, useId, useState } from "react";
 import {
@@ -9,12 +9,6 @@ import {
   type AgeRegion,
   parseAgeRegionCookie,
 } from "@/lib/age-region";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-age-gate-display",
-});
 
 const STORAGE_KEY = "nicozy-age-verification";
 const REMEMBER_MS = 30 * 24 * 60 * 60 * 1000;
@@ -157,7 +151,7 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
         role="dialog"
         aria-modal="true"
         aria-labelledby={headingId}
-        className={`relative w-full max-w-[800px] rounded-[32px] border border-[#f5f5f5] bg-white shadow-[0_20px_30px_rgba(0,0,0,0.08)] ${display.variable}`}
+        className={`relative w-full max-w-[800px] rounded-[32px] border border-[#f5f5f5] bg-white shadow-[0_20px_30px_rgba(0,0,0,0.08)]`}
       >
         <div className="px-8 pb-10 pt-12 sm:px-12 sm:pb-12 sm:pt-14">
           <h2

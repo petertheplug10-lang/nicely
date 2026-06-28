@@ -2,13 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Html5QrcodePlugin from "./scan";
-import { Unbounded } from "next/font/google";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-verify-display",
-});
+// import { Unbounded } from "next/font/google";
 
 export function HomeVerify() {
   const [isScanning, setIsScanning] = useState(false);
@@ -52,7 +46,7 @@ export function HomeVerify() {
   return (
     <section
       id="verify"
-      className={`scroll-mt-28 border-b border-[rgba(229,229,229,0.6)] bg-white py-12 sm:py-20 lg:py-24 ${display.variable}`}
+      className={`scroll-mt-28 border-b border-[rgba(229,229,229,0.6)] bg-white py-12 sm:py-20 lg:py-24`}
       aria-labelledby="verify-heading"
     >
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">

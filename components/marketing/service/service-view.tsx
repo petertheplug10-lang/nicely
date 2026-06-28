@@ -1,17 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import { ServiceContactForm } from "@/components/marketing/service/service-contact-form";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-service-display",
-});
 
 export function ServiceView() {
   return (
-    <div className={`relative bg-[#fafafa] ${display.variable}`}>
+    <div className={`relative bg-[#fafafa]`}>
       <div
         className="pointer-events-none absolute right-[10%] top-48 hidden size-[500px] rounded-full bg-[rgba(223,105,110,0.1)] blur-[100px] md:block"
         aria-hidden

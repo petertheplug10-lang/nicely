@@ -2,19 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import { useBanners } from "@/lib/api/hooks/use-banners";
 import { BannerSwiperFrame } from "../banner-swiper-frame";
 import { HomeMarquee } from "./home-marquee";
 
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-nicozy-display",
-});
-
 /** Figma mobile Section (375×812); desktop keeps prior min-height. */
-const HERO_SECTION_CLASS = `relative min-h-[812px] w-full overflow-hidden bg-[#c4a574] md:min-h-[min(100svh,820px)] ${display.variable}`;
+const HERO_SECTION_CLASS = `relative min-h-[812px] w-full overflow-hidden bg-[#c4a574] md:min-h-[min(100svh,820px)]`;
 
 const HERO_TEXTURE_MOBILE = "/images/home/hero-texture-mobile.png";
 const HERO_TEXTURE_DESKTOP = "/images/home/hero-texture.jpg";

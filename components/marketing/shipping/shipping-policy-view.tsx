@@ -1,13 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Unbounded } from "next/font/google";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-shipping-display",
-});
+// import { Unbounded } from "next/font/google";
 
 function IconBadge({
   children,
@@ -38,7 +32,7 @@ function CheckRow({ label }: { label: string }) {
 
 export function ShippingPolicyView() {
   return (
-    <div className={`relative overflow-x-hidden bg-[#fafafa] ${display.variable}`}>
+    <div className={`relative overflow-x-hidden bg-[#fafafa]`}>
       <div className="relative z-10 mx-auto max-w-[1400px] px-4 pb-14 pt-8 sm:px-6 sm:pb-20 sm:pt-10 md:pt-10 lg:px-16 lg:pb-24 lg:pt-14">
         <header className="max-w-3xl">
           <h1 className="font-unbounded text-4xl font-normal leading-10 tracking-[-0.9px] text-[#171717] sm:text-[clamp(2rem,5vw,3.75rem)] sm:leading-[1.1] sm:tracking-[-1.5px]">

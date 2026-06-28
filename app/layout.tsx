@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+// import { Geist_Mono, Inter } from "next/font/google";
 import { AgeVerificationModal } from "@/components/marketing/age-verification-modal";
 import { getAgeRegionForRequest } from "@/lib/age-region-server";
 import "./globals.css";
@@ -7,17 +7,6 @@ import Providers from "./providers";
 import { Toaster } from "sonner";
 
 /** Matches Google Fonts: Inter variable (opsz/wght) + italic. */
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  style: ["normal", "italic"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +27,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      className={`h-full antialiased`}
     >
       <body className="min-h-full">
         <Providers>{children}</Providers>

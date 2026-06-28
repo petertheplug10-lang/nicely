@@ -98,7 +98,6 @@ function BannerSwiperLayer({
           delay: rotationMs,
           disableOnInteraction: false,
         }}
-        autoplay={false}
         slidesPerView={1}
         watchOverflow
         onSlideChange={(swiper) => onActiveIndexChange(swiper.realIndex)}

@@ -1,17 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { AboutFaq } from "@/components/marketing/about/about-faq";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-about-display",
-});
 
 const pillars = [
   {
@@ -155,7 +149,7 @@ export function AboutView() {
   }, []);
 
   return (
-    <div ref={rootRef} className={`bg-[#fafafa] ${display.variable}`}>
+    <div ref={rootRef} className={`bg-[#fafafa]`}>
       {/* Hero — mobile: headline + tagline centered; md+: Our Story + logo row (Figma 56-1964) */}
       <section className="relative min-h-[min(480px,72svh)] w-full overflow-hidden md:min-h-[min(720px,85vh)]">
         <Image

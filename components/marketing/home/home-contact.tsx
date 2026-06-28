@@ -2,15 +2,9 @@
 
 import type { FormEvent } from "react";
 import Image from "next/image";
-import { Unbounded } from "next/font/google";
+// import { Unbounded } from "next/font/google";
 import { toast } from "sonner";
 import { useContactMutation } from "@/lib/api/hooks/use-contact-mutation";
-
-const display = Unbounded({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-contact-display",
-});
 
 /** API requires `subject`; home block has no subject field. */
 const HOME_CONTACT_SUBJECT = "[Nicozy Club] New Customer Inquiry";
@@ -48,7 +42,7 @@ export function HomeContact() {
 
   return (
     <section
-      className={`border-b border-solid border-[#1c1b18] bg-white px-4 pb-px pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28 ${display.variable}`}
+      className={`border-b border-solid border-[#1c1b18] bg-white px-4 pb-px pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28`}
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto grid max-w-[1320px] gap-12 pb-16 lg:grid-cols-2 lg:items-start lg:gap-24 lg:pb-20">
