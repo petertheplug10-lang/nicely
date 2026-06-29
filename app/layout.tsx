@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Geist_Mono, Inter } from "next/font/google";
 import { AgeVerificationModal } from "@/components/marketing/age-verification-modal";
 import { getAgeRegionForRequest } from "@/lib/age-region-server";
+import { getSiteUrl } from "@/lib/seo/site-url";
 import "./globals.css";
 import Providers from "./providers";
 import { Toaster } from "sonner";
@@ -9,6 +10,7 @@ import { Toaster } from "sonner";
 /** Matches Google Fonts: Inter variable (opsz/wght) + italic. */
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Nicozy",
     template: "%s | Nicozy",
