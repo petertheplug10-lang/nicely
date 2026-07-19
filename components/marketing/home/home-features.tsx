@@ -125,7 +125,7 @@ function FeatureMobileBackground({ kind }: { kind: FeatureRow["visual"] }) {
           priority
         />
         <Image
-          src="/images/features/flavor-overlay.jpg"
+          src="/images/features/flavor-overlay.png"
           alt=""
           fill
           className="object-cover object-center"
@@ -220,10 +220,10 @@ function FlavorVisual() {
         priority
       />
       <Image
-        src="/images/features/flavor-overlay.jpg"
+        src="/images/features/flavor-overlay.png"
         alt=""
         fill
-        className="object-cover object-center"
+        className="object-cover object-center !w-[120%] !h-[120%]"
         sizes="(max-width: 1024px) 100vw, 900px"
       />
     </div>
