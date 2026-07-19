@@ -76,7 +76,7 @@ export function AccessRewardView({ verificationId }: AccessRewardViewProps) {
         <div className="relative mx-auto my-6 w-full">
           <div className="aspect-[276/155] w-full">
             <Image
-              src="/images/verify/verify-product.png"
+              src="/images/verify/verify-product.svg"
               alt="Nicozy product packaging"
               fill
               className="object-cover object-[50%_45%]"
