@@ -115,29 +115,19 @@ function TextPanel({
 function FeatureMobileBackground({ kind }: { kind: FeatureRow["visual"] }) {
   if (kind === "flavor") {
     return (
-      <>
-        <Image
-          src="/images/features/flavor-base.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <Image
-          src="/images/features/flavor-overlay.png"
+      <Image
+          src="/images/features/flavor-overlay-mobile-v2.png"
           alt=""
           fill
           className="object-cover object-center"
           sizes="100vw"
         />
-      </>
     );
   }
   if (kind === "premium") {
     return (
       <Image
-        src="/images/features/premium-mobile.png"
+        src="/images/features/premium-mobile-v2.png"
         alt=""
         fill
         className="object-cover object-center !h-[111%] !top-[-13px]"
@@ -146,22 +136,13 @@ function FeatureMobileBackground({ kind }: { kind: FeatureRow["visual"] }) {
     );
   }
   return (
-    <>
-      <Image
-        src="/images/features/organic-base.jpg"
-        alt=""
-        fill
-        className="object-cover"
-        sizes="100vw"
-      />
-      <Image
-        src="/images/features/organic-overlay.jpg"
+    <Image
+        src="/images/features/organic-mobile-v2.png"
         alt=""
         fill
         className="object-cover object-[45%_40%]"
         sizes="100vw"
       />
-    </>
   );
 }
 
@@ -212,15 +193,7 @@ function FlavorVisual() {
   return (
     <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[28px] border border-[rgba(229,229,229,0.6)] shadow-[0_8px_30px_rgba(0,0,0,0.04)] sm:min-h-[280px] sm:rounded-[40px] lg:min-h-[455px]">
       <Image
-        src="/images/features/flavor-base.jpg"
-        alt="Nicozy cans in a colorful grid"
-        fill
-        className="object-cover"
-        sizes="(max-width: 1024px) 100vw, 900px"
-        priority
-      />
-      <Image
-        src="/images/features/flavor-overlay.png"
+        src="/images/features/flavor-overlay-v2.png"
         alt=""
         fill
         className="object-cover object-center !w-[120%] !h-[120%]"
@@ -234,7 +207,7 @@ function PremiumVisual() {
   return (
     <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[28px] border border-[rgba(229,229,229,0.6)] shadow-[0_8px_30px_rgba(0,0,0,0.04)] bg-[#050402] sm:min-h-[280px] sm:rounded-[40px] lg:min-h-[426px]">
       <Image
-        src="/images/features/premium-pc.png"
+        src="/images/features/premium-v2.png"
         alt="Nicozy pouches on dark surface"
         fill
         className="object-cover object-[65%_center]"
@@ -248,14 +221,7 @@ function OrganicVisual() {
   return (
     <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[28px] border border-[rgba(229,229,229,0.6)] shadow-[0_8px_30px_rgba(0,0,0,0.04)] sm:min-h-[280px] sm:rounded-[40px] lg:min-h-[426px]">
       <Image
-        src="/images/features/organic-base.jpg"
-        alt="Organic nicotine salts macro"
-        fill
-        className="object-cover"
-        sizes="(max-width: 1024px) 100vw, 900px"
-      />
-      <Image
-        src="/images/features/organic-overlay.jpg"
+        src="/images/features/organic-v2.png"
         alt=""
         fill
         className="object-cover object-[45%_40%]"
