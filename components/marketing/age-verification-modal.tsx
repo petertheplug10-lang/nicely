@@ -1,55 +1,17 @@
 "use client";
 
 import Image from "next/image";
-// import { Unbounded } from "next/font/google";
-import Cookies from "js-cookie";
 import { useEffect, useId, useState } from "react";
-import {
-  AGE_REGION_COOKIE,
-  type AgeRegion,
-  parseAgeRegionCookie,
-} from "@/lib/age-region";
 
 const STORAGE_KEY = "nicozy-age-verification";
 const REMEMBER_MS = 30 * 24 * 60 * 60 * 1000;
-const REGION_COOKIE_EXPIRES_DAYS = 365;
 
-function writeRegionCookie(value: AgeRegion) {
-  Cookies.set(AGE_REGION_COOKIE, value, {
-    path: "/",
-    expires: REGION_COOKIE_EXPIRES_DAYS,
-    sameSite: "lax",
-  });
-}
-
-async function fetchRegion(signal: AbortSignal): Promise<AgeRegion | null> {
-  try {
-    const res = await fetch("/age-region", { cache: "no-store", signal });
-    if (!res.ok) return null;
-    const data = (await res.json()) as { region?: string };
-    return parseAgeRegionCookie(data.region);
-  } catch {
-    return null;
-  }
-}
-
-const REGION_COPY: Record<
-  AgeRegion,
-  { label: string; age: string; flag: string; blurb: string }
-> = {
-  CA: {
-    label: "Canada",
-    age: "19+",
-    flag: "/images/age-gate/ca.svg",
-    blurb: "In Canada, you must be 19 or older (or the minimum age in your province or territory) to purchase nicotine products.",
-  },
-  US: {
-    label: "United States",
-    age: "21+",
-    flag: "/images/age-gate/us.svg",
-    blurb: "In the United States, you must be 21 or older to purchase nicotine products.",
-  },
-};
+const US_COPY = {
+  label: "United States",
+  age: "21+",
+  flag: "/images/age-gate/us.svg",
+  blurb: "In the United States, you must be 21 or older to purchase nicotine products.",
+} as const;
 
 function hasValidVerification(): boolean {
   if (typeof window === "undefined") return false;
@@ -85,39 +47,15 @@ function persistVerification(rememberFor30Days: boolean) {
   }
 }
 
-type AgeVerificationModalProps = {
-  /** From SSR `cookies()` — same value as `AGE_REGION_COOKIE` on first paint. */
-  defaultRegion: AgeRegion;
-};
-
-export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProps) {
+export function AgeVerificationModal() {
   const headingId = useId();
   const [open, setOpen] = useState(false);
   const [remember, setRemember] = useState(false);
-  const [region, setRegion] = useState<AgeRegion>(defaultRegion);
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    (async () => {
-      const fromCookie = parseAgeRegionCookie(Cookies.get(AGE_REGION_COOKIE));
-      if (fromCookie) {
-        setRegion(fromCookie);
-      } else {
-        const resolved = await fetchRegion(controller.signal);
-        if (controller.signal.aborted) return;
-        const next: AgeRegion = resolved ?? "US";
-        writeRegionCookie(next);
-        setRegion(next);
-      }
-
-      if (controller.signal.aborted) return;
+    queueMicrotask(() => {
       if (!hasValidVerification()) setOpen(true);
-    })();
-
-    return () => {
-      controller.abort();
-    };
+    });
   }, []);
 
   useEffect(() => {
@@ -131,8 +69,6 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
 
   if (!open) return null;
 
-  const copy = REGION_COPY[region];
-
   function onConfirm() {
     persistVerification(remember);
     setOpen(false);
@@ -144,7 +80,7 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/45 p-4 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[100] overflow-auto flex items-center justify-center bg-black/45 p-4 backdrop-blur-[2px]"
       role="presentation"
     >
       <div
@@ -167,15 +103,15 @@ export function AgeVerificationModal({ defaultRegion }: AgeVerificationModalProp
           <div className="mx-auto mt-8 flex max-w-md justify-center">
             <div className="flex w-full flex-col items-center rounded-[20px] border border-[rgba(245,245,245,0.5)] bg-[#fafafa] px-6 py-8 sm:py-10">
               <div className="relative size-10 sm:size-12">
-                <Image src={copy.flag} alt="" fill className="object-contain" sizes="48px" />
+                <Image src={US_COPY.flag} alt="" fill className="object-contain" sizes="48px" />
               </div>
               <p className="mt-4 text-xs font-bold uppercase tracking-[1.2px] text-[#171717]">
-                {copy.label}
+                {US_COPY.label}
               </p>
               <p className="mt-2 font-unbounded text-2xl font-normal text-[#404040] sm:text-[28px]">
-                {copy.age}
+                {US_COPY.age}
               </p>
-              <p className="mt-4 text-center text-sm leading-6 text-[#737373]">{copy.blurb}</p>
+              <p className="mt-4 text-center text-sm leading-6 text-[#737373]">{US_COPY.blurb}</p>
             </div>
           </div>
 

@@ -10,7 +10,7 @@ import { createPortal } from "react-dom";
 const navDesktop = [
   { href: "/", label: "Home" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/shops", label: "Shops" },
+  // { href: "/shops", label: "Shops" },
   { href: "/service", label: "Service" },
   { href: "/wholesale", label: "Wholesale" },
   { href: "/about", label: "About NICOZY" },
@@ -23,7 +23,7 @@ const navDesktop = [
 const navMobile = [
   { href: "/", label: "Home" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/shops", label: "Shops" },
+  // { href: "/shops", label: "Shops" },
   { href: "/service", label: "Service" },
   { href: "/wholesale", label: "Wholesale" },
   { href: "/#verify", label: "Verification" },
@@ -156,12 +156,12 @@ export function MarketingHeader() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-3">
-            <Link
+            {/* <Link
               href="/shops"
               className="hidden h-9 items-center justify-center rounded-full bg-black px-5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:bg-neutral-800 lg:inline-flex"
             >
               Shop Now
-            </Link>
+            </Link> */}
 
             <button
               type="button"
@@ -222,13 +222,13 @@ export function MarketingHeader() {
                 );
               })}
             </ul>
-            <Link
+            {/* <Link
               href="/shops"
               className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-black text-[12px] font-medium uppercase tracking-[1.4px] text-white transition hover:bg-neutral-800"
               onClick={closeMenu}
             >
               Shop Now
-            </Link>
+            </Link> */}
           </nav>
         </div>
       </div>
