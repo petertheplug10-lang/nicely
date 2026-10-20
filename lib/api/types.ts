@@ -78,6 +78,8 @@ export type WholesaleInquiryPayload = {
   business_email: string;
   estimated_monthly_volume: string;
   additional_message?: string;
+  /** Google reCAPTCHA v3 token from the client. */
+  recaptcha_token: string;
 };
 
 export type FormSubmitResult = { id: number };

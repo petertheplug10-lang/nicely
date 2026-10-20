@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { type FormEvent } from "react";
 import Image from "next/image";
+import Script from "next/script";
 import { useWholesaleInquiryMutation } from "@/lib/api/hooks/use-wholesale-inquiry-mutation";
+import { getRecaptchaToken } from "@/lib/recaptcha";
 import { toast } from "sonner";
 
 function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor: string }) {
@@ -26,115 +28,153 @@ const ESTIMATED_MONTHLY_VOLUME_OPTIONS = [
   "5000+ cans",
 ] as const;
 
+const RECAPTCHA_ACTION = "wholesale_inquiry";
+
 export function WholesaleInquiryForm() {
   const { mutateAsync: submitWholesaleInquiry, isPending } = useWholesaleInquiryMutation();
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim();
+
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     try {
-    const formData = new FormData(e.target as HTMLFormElement);
-    await submitWholesaleInquiry({
-      company_name: formData.get("company") as string,
-      city_state_country: formData.get("city") as string,
-      business_email: formData.get("businessEmail") as string,
-      estimated_monthly_volume: formData.get("volume") as string,
-      additional_message: formData.get("message") as string,
-    });
-    (e.target as HTMLFormElement).reset();
-    toast.success("Message sent successfully!");
+      const formData = new FormData(form);
+      const recaptcha_token = await getRecaptchaToken(RECAPTCHA_ACTION);
+      await submitWholesaleInquiry({
+        company_name: formData.get("company") as string,
+        city_state_country: formData.get("city") as string,
+        business_email: formData.get("businessEmail") as string,
+        estimated_monthly_volume: formData.get("volume") as string,
+        additional_message: formData.get("message") as string,
+        recaptcha_token,
+      });
+      form.reset();
+      toast.success("Message sent successfully!");
     } catch (error) {
       toast.error((error as Error).message || "Something went wrong. Please try again.");
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-6">
-      <div>
-        <FieldLabel htmlFor="wh-company">Company Name</FieldLabel>
-        <input
-          id="wh-company"
-          name="company"
-          required
-          type="text"
-          autoComplete="organization"
-          placeholder="Store Name LLC"
-          className={inputClass}
+    <>
+      {siteKey ? (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`}
+          strategy="afterInteractive"
         />
-      </div>
+      ) : null}
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <form onSubmit={onSubmit} className="flex flex-col gap-6">
         <div>
-          <FieldLabel htmlFor="wh-city">City/Region</FieldLabel>
+          <FieldLabel htmlFor="wh-company">Company Name</FieldLabel>
           <input
-            id="wh-city"
-            name="city"
+            id="wh-company"
+            name="company"
             required
             type="text"
-            placeholder="New York, NY"
+            autoComplete="organization"
+            placeholder="Store Name LLC"
             className={inputClass}
           />
         </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div>
+            <FieldLabel htmlFor="wh-city">City/Region</FieldLabel>
+            <input
+              id="wh-city"
+              name="city"
+              required
+              type="text"
+              placeholder="New York, NY"
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="wh-biz-email">Business Email</FieldLabel>
+            <input
+              id="wh-biz-email"
+              name="businessEmail"
+              required
+              type="email"
+              autoComplete="email"
+              placeholder="contact@storename.com"
+              className={inputClass}
+            />
+          </div>
+        </div>
+
         <div>
-          <FieldLabel htmlFor="wh-biz-email">Business Email</FieldLabel>
-          <input
-            id="wh-biz-email"
-            name="businessEmail"
+          <FieldLabel htmlFor="wh-volume">Estimated Monthly Volume</FieldLabel>
+          <select
+            id="wh-volume"
+            name="volume"
             required
-            type="email"
-            autoComplete="email"
-            placeholder="contact@storename.com"
-            className={inputClass}
+            defaultValue=""
+            className={`${inputClass} cursor-pointer text-[#171717] invalid:text-[rgba(23,23,23,0.5)]`}
+          >
+            <option value="" disabled>
+              Select a range
+            </option>
+            {ESTIMATED_MONTHLY_VOLUME_OPTIONS.map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <FieldLabel htmlFor="wh-message">Additional Message</FieldLabel>
+          <textarea
+            id="wh-message"
+            name="message"
+            rows={5}
+            required
+            placeholder="Please describe your inquiry in detail..."
+            className={`${inputClass} min-h-[153px] resize-none leading-6 sm:min-h-0`}
           />
         </div>
-      </div>
 
-      <div>
-        <FieldLabel htmlFor="wh-volume">Estimated Monthly Volume</FieldLabel>
-        <select
-          id="wh-volume"
-          name="volume"
-          required
-          defaultValue=""
-          className={`${inputClass} cursor-pointer text-[#171717] invalid:text-[rgba(23,23,23,0.5)]`}
+        <button
+          type="submit"
+          className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#171717] px-8 text-white shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.1)] transition hover:bg-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#171717] sm:w-fit sm:px-10"
+          disabled={isPending}
         >
-          <option value="" disabled>
-            Select a range
-          </option>
-          {ESTIMATED_MONTHLY_VOLUME_OPTIONS.map((value) => (
-            <option key={value} value={value}>
-              {value}
-            </option>
-          ))}
-        </select>
-      </div>
+          <span className="text-[14px] font-semibold leading-5 tracking-[0.35px]">
+            {isPending ? "Sending..." : "Send Message"}
+          </span>
+          <Image
+            src="/images/wholesale/icon-submit-arrow.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="size-4 shrink-0"
+          />
+        </button>
 
-      <div>
-        <FieldLabel htmlFor="wh-message">Additional Message</FieldLabel>
-        <textarea
-          id="wh-message"
-          name="message"
-          rows={5}
-          required
-          placeholder="Please describe your inquiry in detail..."
-          className={`${inputClass} min-h-[153px] resize-none leading-6 sm:min-h-0`}
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#171717] px-8 text-white shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.1)] transition hover:bg-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#171717] sm:w-fit sm:px-10"
-        disabled={isPending}
-      >
-        <span className="text-[14px] font-semibold leading-5 tracking-[0.35px]">
-          {isPending ? "Sending..." : "Send Message"}
-        </span>
-        <Image
-          src="/images/wholesale/icon-submit-arrow.svg"
-          alt=""
-          width={16}
-          height={16}
-          className="size-4 shrink-0"
-        />
-      </button>
-    </form>
+        <p className="text-[11px] leading-4 text-[#a1a1a1]">
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-[#737373]"
+          >
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-[#737373]"
+          >
+            Terms of Service
+          </a>{" "}
+          apply.
+        </p>
+      </form>
+    </>
   );
 }
