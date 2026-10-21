@@ -70,6 +70,8 @@ export type ContactPayload = {
   email: string;
   subject: string;
   message: string;
+  /** Google reCAPTCHA v3 token from the client. */
+  recaptcha_token: string;
 };
 
 export type WholesaleInquiryPayload = {

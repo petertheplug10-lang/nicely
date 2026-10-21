@@ -2,15 +2,19 @@
 
 import type { FormEvent } from "react";
 import Image from "next/image";
+import Script from "next/script";
 // import { Unbounded } from "next/font/google";
 import { toast } from "sonner";
 import { useContactMutation } from "@/lib/api/hooks/use-contact-mutation";
+import { getRecaptchaToken } from "@/lib/recaptcha";
 
 /** API requires `subject`; home block has no subject field. */
 const HOME_CONTACT_SUBJECT = "[Nicozy Club] New Customer Inquiry";
+const RECAPTCHA_ACTION = "contact";
 
 export function HomeContact() {
   const { mutateAsync: submitContact, isPending } = useContactMutation();
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,11 +26,13 @@ export function HomeContact() {
     if (!name || !email || !message) return;
 
     try {
+      const recaptcha_token = await getRecaptchaToken(RECAPTCHA_ACTION);
       await submitContact({
         name,
         email,
         subject: HOME_CONTACT_SUBJECT,
         message,
+        recaptcha_token,
       });
       form.reset();
       toast.success("Message sent successfully!");
@@ -45,6 +51,13 @@ export function HomeContact() {
       className={`border-b border-solid border-[#1c1b18] bg-white px-4 pb-px pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28`}
       aria-labelledby="contact-heading"
     >
+      {siteKey ? (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`}
+          strategy="afterInteractive"
+        />
+      ) : null}
+
       <div className="mx-auto grid max-w-[1320px] gap-12 pb-16 lg:grid-cols-2 lg:items-start lg:gap-24 lg:pb-20">
         <div className="min-w-0">
           <h2
@@ -148,6 +161,27 @@ export function HomeContact() {
             >
               {isPending ? "Sending..." : "Send Message"}
             </button>
+            <p className="text-[11px] leading-4 text-[#a1a1a1]">
+              This site is protected by reCAPTCHA and the Google{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-[#737373]"
+              >
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-[#737373]"
+              >
+                Terms of Service
+              </a>{" "}
+              apply.
+            </p>
           </form>
         </div>
       </div>
